@@ -1,5 +1,5 @@
-export type GamePhase = 'SETUP' | 'NIGHT' | 'DAY' | 'VOTING' | 'ENDED';
-export type GameRole = 'VAMPIRE' | 'VILLAGER' | 'DOCTOR' | 'HUNTER' | 'SEER';
+export type GamePhase = 'SETUP' | 'FIRST_NIGHT' | 'NIGHT' | 'DAY' | 'VOTING' | 'ENDED';
+export type GameRole = 'VAMPIRE' | 'VILLAGER' | 'DOCTOR' | 'SEER' | 'HUNTER';
 
 export interface Player {
   id: string;
@@ -7,7 +7,7 @@ export interface Player {
   role: GameRole;
   isAlive: boolean;
   isRevealed: boolean;
-  actionTarget?: string;
+  actionTarget: string | null;
 }
 
 export interface GameState {
@@ -24,51 +24,56 @@ export interface GameState {
 
 export interface RoleInfo {
   name: string;
-  description: string;
   icon: string;
-  color: string;
+  description: string;
   canActAtNight: boolean;
   actionDescription?: string;
+  minPlayers: number;
+  maxPlayers: number;
 }
 
 export const ROLE_DETAILS: Record<GameRole, RoleInfo> = {
   VAMPIRE: {
     name: 'Vampir',
-    description: 'Her gece bir köylüyü öldürür',
     icon: '🧛',
-    color: '#8B0000',
+    description: 'Her gece bir köylüyü öldürür.',
     canActAtNight: true,
-    actionDescription: 'Öldürmek istediğin köylüyü seç'
+    actionDescription: 'Öldürmek istediğin köylüyü seç',
+    minPlayers: 2,
+    maxPlayers: 3
   },
   VILLAGER: {
     name: 'Köylü',
-    description: 'Vampirleri bulmaya çalışır',
     icon: '👨‍🌾',
-    color: '#4B6F44',
-    canActAtNight: false
+    description: 'Gündüz vampirleri bulmaya çalışır.',
+    canActAtNight: false,
+    minPlayers: 3,
+    maxPlayers: 8
   },
   DOCTOR: {
     name: 'Doktor',
-    description: 'Her gece bir kişiyi iyileştirir',
     icon: '👨‍⚕️',
-    color: '#4169E1',
+    description: 'Her gece bir kişiyi iyileştirir.',
     canActAtNight: true,
-    actionDescription: 'İyileştirmek istediğin kişiyi seç'
-  },
-  HUNTER: {
-    name: 'Avcı',
-    description: 'Öldüğünde bir kişiyi öldürebilir',
-    icon: '🏹',
-    color: '#8B4513',
-    canActAtNight: false,
-    actionDescription: 'Öldürmek istediğin kişiyi seç'
+    actionDescription: 'İyileştirmek istediğin kişiyi seç',
+    minPlayers: 1,
+    maxPlayers: 1
   },
   SEER: {
     name: 'Kahin',
-    description: 'Her gece bir kişinin rolünü görebilir',
     icon: '🔮',
-    color: '#9932CC',
+    description: 'Her gece bir kişinin vampir olup olmadığını görür.',
     canActAtNight: true,
-    actionDescription: 'Rolünü görmek istediğin kişiyi seç'
+    actionDescription: 'Rolünü görmek istediğin kişiyi seç',
+    minPlayers: 1,
+    maxPlayers: 1
+  },
+  HUNTER: {
+    name: 'Avcı',
+    icon: '🔫',
+    description: 'Öldürüldüğünde %50 şansla başka birini de öldürür.',
+    canActAtNight: false,
+    minPlayers: 1,
+    maxPlayers: 1
   }
 }; 

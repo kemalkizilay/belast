@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vampir Köylü</string>
+    
+    <!-- Genel -->
+    <string name="next">Devam Et</string>
+    <string name="skip">Pas Geç</string>
+    <string name="select">Seç</string>
+    <string name="add">Ekle</string>
+    <string name="remove">Kaldır</string>
+    
+    <!-- Oyun Kurulumu -->
+    <string name="setup_title">Oyun Kurulumu</string>
+    <string name="player_name_hint">Oyuncu Adı</string>
+    <string name="start_game">Oyunu Başlat</string>
+    
+    <!-- Gece Fazı -->
+    <string name="night_phase">Gece Fazı</string>
+    <string name="night_action_vampire">Öldür</string>
+    <string name="night_action_doctor">İyileştir</string>
+    <string name="night_action_seer">Rolünü Gör</string>
+    
+    <!-- Gündüz Fazı -->
+    <string name="day_phase">Gündüz Fazı</string>
+    <string name="day_count">%d. Gün</string>
+    <string name="start_voting">Oylama Başlat</string>
+    
+    <!-- Olaylar -->
+    <string name="event_killed">%s öldürüldü!</string>
+    <string name="event_saved">Doktor birini kurtardı!</string>
+    <string name="event_revealed">Kahin birinin rolünü gördü!</string>
+</resources> 
